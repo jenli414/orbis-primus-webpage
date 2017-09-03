@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            /* Image fitting and centering */
+            * {
+                padding: 0;
+                margin: 0;
+            }
+
+            .fit {
+                max-width: 100%;
+                max-height: 100%;
+            }
+            .center {
+                display: block;
+                margin: auto;
+            }
+
+            /* Navigation bar */
+            .topnav {
+                overflow: hidden;
+                background-color: #333;
+                /*position: fixed;*/
+                width: 100%;
+            }
+
+            .topnav a {
+                float: left;
+                display: block;
+                color: #f2f2f2;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-size: 17px;
+            }
+
+            .topnav a:hover {
+                background-color: black;
+                color: white;
+            }
+
+            .topnav a.active {
+                background-color: #dd0000;
+                color: white;
+            }
+
+            /* Page Content */
+            .pagecontent {
+                width: 100%;
+            }
+        </style>
+
+        <!-- Center and fit top image to browser -->
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script type="text/javascript" language="JavaScript">
+            function set_body_height()
+            {
+                var wh = $(window).height();
+                $('body').attr('style', 'height:' + wh + 'px;');
+            }
+            $(document).ready(function() {
+                set_body_height();
+                $(window).bind('resize', function() { set_body_height(); });
+            });
+        </script>
+
+    </head>
+    <body bgcolor="393635" text="white">
+        <div id = "outerdiv">
+            <div id="topcontainer">
+                <!-- Top image -->
+                <div id="topimgcontainer">
+                    <img id="topimg" class="topimg center fit" src="orbis_primus_top.jpg">
+                </div>
+                <!-- Menu bar html -->
+                <div id="topnav" class="topnav">
+                    <a class="active" href="start.html" target="contentframe">Start</a>
+                    <a href="om-oss.html" target="contentframe">Om oss</a>
+                    <a href="boka-oss.html" target="contentframe">Boka oss</a>
+                    <a href="kontakta-oss.html" target="contentframe">Kontakta oss</a>
+                </div>
+            </div>
+
+            <!-- Page Content -->
+            <div>
+                <iframe class = "pagecontent"
+                    src = "start.html"
+                    name = "contentframe"
+                    allowTransparency = "true"
+                    scrolling = "no"
+                    frameborder = "0"
+                    onload = "this.style.height = 0 + 'px';this.style.height = this.contentDocument.body.scrollHeight + 'px';">
+                </iframe>
+            </div>
+        </div>
+    </body>
+    <!-- Keep navigation bar from being scrolled out -->
+    <script type='text/javascript'>
+        window.addEventListener("scroll", function() {
+            var topNav = document.getElementById('topnav');
+            var imgHeight = document.getElementById('topimg').offsetHeight;
+            if (window.pageYOffset >= imgHeight) {
+                topNav.style.position = 'fixed';
+                topNav.style.top = 0;
+            } else {
+                topNav.style.position = 'relative';
+            }
+        });
+    </script>
+</html>
