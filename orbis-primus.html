@@ -2,86 +2,242 @@
 <html>
     <head>
         <style>
-            /* Image fitting and centering */
             * {
                 padding: 0;
                 margin: 0;
+                text-align:center;
             }
 
-            .fit {
-                max-width: 100%;
-                max-height: 100%;
+            .topcontainer {
+                top:0;
             }
-            .center {
-                display: block;
-                margin: auto;
+
+            .slideshowcontainer {
+                max-width: 100%;
+                position: relative;
+
+            }
+
+            .slideshowslide {
+                display: none;
+                position:relative;
+                z-index:0;
+            }
+
+            .prev, .next {
+                cursor: pointer;
+                position: absolute;
+                top: 50%;
+                width: auto;
+                margin-top: -22px;
+                padding: 20px;
+                color: white;
+                font-weight: bold;
+                font-size: 18px;
+                transition: 0.6s ease;
+                border-radius: 0 3px 3px 0;
+            }
+
+            .prev {
+                left: 0;
+                border-radius: 0 200px 200px 0;
+            }
+
+            .next {
+                right: 0;
+                border-radius: 200px 0 0 200px;
+            }
+
+            .prev:hover, .next:hover {
+                background-color: rgba(71,71,71,0.5);
+            }
+
+            /* Play/Pause buttons in slideshow */
+            .slideshowButton {
+                cursor:pointer;
+                margin-right:10px;
+                margin-top:10px;
+                border:0;
+                background:rgba(0,0,0,0);
+                background-position:center;
+                background-repeat:no-repeat;
+                position:absolute;
+                right:0;
+                top:0;
+            }
+
+            button[name="playButton"] {
+                display:none;
+                width:46px;
+                height:46px;
+                background-image:url(playButton.png);
+                background-size:46px;
+            }
+
+            button[name="pauseButton"] {
+                width:45px;
+                height:45px;
+                background-image:url(pauseButton.png);
+                background-size:45px;
+            }
+
+            /* Dots in slideshow */
+            .dot {
+                cursor:pointer;
+                height: 13px;
+                width: 13px;
+                margin: 0 2px;
+                background-color: #717171;
+                border-radius: 50%;
+                position:relative;
+                display: inline-block;
+                transition: background-color 0.6s ease;
+            }
+
+            .dots {
+                position: absolute;
+                bottom: 0;
+                display:inline-block;
+                padding:10px;
+            }
+
+            .dot:not(.visible):hover {
+                background-color: rgba(45,47,47,0.7);
+            }
+
+            .visible {
+                background-color: rgba(221,00,00,0.7);
+            }
+
+            /* Fading animation */
+            .fade {
+                -webkit-animation-name: fade;
+                -webkit-animation-duration: 1.5s;
+                animation-name: fade;
+                animation-duration: 1.5s;
+            }
+
+            @-webkit-keyframes fade {
+                from {opacity: .4}
+                to {opacity: 1}
+            }
+
+            @keyframes fade {
+                from {opacity: .4}
+                to {opacity: 1}
             }
 
             /* Navigation bar */
             .topnav {
                 overflow: hidden;
                 background-color: #333;
-                /*position: fixed;*/
                 width: 100%;
+                transform: translate(-50%, -50%);
+                margin-top:20px;
+                margin-left:50%;
+                position:relative;
+                z-index:1;
             }
 
             .topnav a {
-                float: left;
-                display: block;
+                display: inline-block;
                 color: #f2f2f2;
-                text-align: center;
                 padding: 14px 16px;
                 text-decoration: none;
                 font-size: 17px;
             }
 
-            .topnav a:hover {
-                background-color: black;
+            .topnavbutton {
+                margin-left:-4px;
+            }
+
+            .topnavbutton:not(.active):hover {
+                background-color: rgba(28, 30, 30, 0.8);
                 color: white;
             }
 
-            .topnav a.active {
-                background-color: #dd0000;
+            .topnavbutton.active {
+                background-color: rgba(221,00,00,0.8);
                 color: white;
             }
 
             /* Page Content */
             .pagecontent {
-                width: 100%;
+                position:relative;
+                margin-top:-20px;
+                z-index:0;
             }
         </style>
-
-        <!-- Center and fit top image to browser -->
-        <script src="http://code.jquery.com/jquery-latest.js"></script>
-        <script type="text/javascript" language="JavaScript">
-            function set_body_height()
-            {
-                var wh = $(window).height();
-                $('body').attr('style', 'height:' + wh + 'px;');
-            }
-            $(document).ready(function() {
-                set_body_height();
-                $(window).bind('resize', function() { set_body_height(); });
-            });
-        </script>
-
     </head>
-    <body bgcolor="393635" text="white">
+    <body bgcolor = "393635" text = "white">
         <div id = "outerdiv">
-            <div id="topcontainer">
-                <!-- Top image -->
-                <div id="topimgcontainer">
-                    <img id="topimg" class="topimg center fit" src="orbis_primus_top.jpg">
+            <div id = "topcontainer">
+                <!-- Top slideshow -->
+                <div id = "slideshowcontainer" class = "slideshowcontainer">
+                    <div class = "slideshowslide fade">
+                        <img src = "slideimg1.jpg" style="width:100%">
+                        <div class = "dots">
+                            <span class = "dot"></span>
+                            <span class = "dot" onclick = "showSlide(2)"></span>
+                            <span class = "dot" onclick = "showSlide(3)"></span>
+                        </div>
+                    </div>
+
+                    <div class = "slideshowslide fade">
+                        <img src = "slideimg2.jpg" style="width:100%">
+                        <div class = "dots">
+                            <span class = "dot" onclick = "showSlide(1)"></span>
+                            <span class = "dot"></span>
+                            <span class = "dot" onclick = "showSlide(3)"></span>
+                        </div>
+                    </div>
+
+                    <div class = "slideshowslide fade">
+                        <img src = "slideimg3.jpg" style="width:100%">
+                        <div class = "dots">
+                            <span class = "dot" onclick = "showSlide(1)"></span>
+                            <span class = "dot" onclick = "showSlide(2)"></span>
+                            <span class = "dot"></span>
+                        </div>
+                    </div>
+                    <a class = "prev" onclick = "changeSlide(-1)">&#10094;</a>
+                    <a class = "next" onclick = "changeSlide(1)">&#10095;</a>
+                    <button class = "slideshowButton" name = "pauseButton" id = "pauseButton" onclick = "pauseSlides();"></button>
+                    <button class = "slideshowButton" name = "playButton" id = "playButton" onclick = "playSlides();"></button>
                 </div>
+
                 <!-- Menu bar html -->
-                <div id="topnav" class="topnav">
-                    <a class="active" href="start.html" target="contentframe">Start</a>
-                    <a href="om-oss.html" target="contentframe">Om oss</a>
-                    <a href="boka-oss.html" target="contentframe">Boka oss</a>
-                    <a href="kontakta-oss.html" target="contentframe">Kontakta oss</a>
+                <div id = "topnav" class = "topnav">
+                    <a id = "start"
+                        class = "topnavbutton"
+                        href = "start.html"
+                        target = "contentframe"
+                        onclick = "contentShown = this.id;setContentShown(contentShown)">
+                        Start
+                    </a>
+                    <a id = "omoss"
+                        class = "topnavbutton"
+                        href = "om-oss.html"
+                        target = "contentframe"
+                        onclick = "contentShown = this.id;setContentShown(contentShown)">
+                        Om oss
+                    </a>
+                    <a id = "bokaoss"
+                        class = "topnavbutton"
+                        href = "boka-oss.html"
+                        target = "contentframe"
+                        onclick = "contentShown = this.id;setContentShown(contentShown)">
+                        Boka oss
+                    </a>
+                    <a id = "kontaktaoss"
+                        class = "topnavbutton"
+                        href = "kontakta-oss.html"
+                        target = "contentframe"
+                        onclick = "contentShown = this.id;setContentShown(contentShown)">
+                        Kontakta oss
+                    </a>
                 </div>
             </div>
-
             <!-- Page Content -->
             <div>
                 <iframe class = "pagecontent"
@@ -90,22 +246,109 @@
                     allowTransparency = "true"
                     scrolling = "no"
                     frameborder = "0"
+                    width = 100%
                     onload = "this.style.height = 0 + 'px';this.style.height = this.contentDocument.body.scrollHeight + 'px';">
                 </iframe>
             </div>
         </div>
     </body>
+    <!-- Show Slideshow -->
+    <script>
+        var slideIndex = 0;
+        var automaticSlideshow = true;
+        runSlides();
+        /* Automatic slideshow */
+        function runSlides() {
+            if (automaticSlideshow == true) {
+                setTimeout(runSlides, 2500); // Change image every 2 seconds
+                changeSlide(1);
+            };
+        }
+        /* Pause automatic slideshow */
+        function pauseSlides() {
+            automaticSlideshow = false;
+            var pauseButton = document.getElementById("pauseButton");
+            pauseButton.style.display = "none"
+            var playButton = document.getElementById("playButton");
+            playButton.style.display = "block"
+        }
+        /* Play automatic slideshow */
+        function playSlides() {
+            automaticSlideshow = true;
+            var playButton = document.getElementById("playButton");
+            playButton.style.display = "none"
+            var pauseButton = document.getElementById("pauseButton");
+            pauseButton.style.display = "block"
+            runSlides();
+        }
+        <!-- Change to a slide relative to current by n -->
+        function changeSlide(n) {
+            showSlides(slideIndex += n);
+        }
+        <!-- Set slideIndex to and show slide n -->
+        function showSlide(n) {
+            showSlides(slideIndex = n);
+        }
+        <!-- Show slide n. Will hide all slides and dots, -->
+        <!-- then display the right ones for slide n. -->
+        function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("slideshowslide");
+            var dots = document.getElementsByClassName("dot");
+            var slide_dots = [];
+            <!-- Get dots for slide n -->
+            for (i = 0; i < dots.length; i += slides.length + 1)
+                slide_dots.push(dots[i]);
+            <!-- If trying to go right from last slide, go to first slide -->
+            if (n > slides.length) {
+                slideIndex = 1
+            }
+            <!-- If trying to go left from first slide, go to last slide -->
+            if (n < 1) {
+                slideIndex = slides.length
+            }
+            <!-- Hide all slides -->
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            <!-- Hide all dots -->
+            for (i = 0; i < slide_dots.length; i++) {
+                slide_dots[i].className = slide_dots[i].className.replace(" visible", "");
+            };
+            <!-- Display current slide -->
+            slides[slideIndex - 1].style.display = "inline-block";
+            <!-- Display correct dot -->
+            slide_dots[slideIndex - 1].className += " visible";
+        }
+    </script>
+
     <!-- Keep navigation bar from being scrolled out -->
-    <script type='text/javascript'>
+    <script type = 'text/javascript'>
         window.addEventListener("scroll", function() {
             var topNav = document.getElementById('topnav');
-            var imgHeight = document.getElementById('topimg').offsetHeight;
-            if (window.pageYOffset >= imgHeight) {
+            var slideshowHeight = document.getElementById('slideshowcontainer').offsetHeight;
+            if (window.pageYOffset >= slideshowHeight) {
                 topNav.style.position = 'fixed';
                 topNav.style.top = 0;
             } else {
                 topNav.style.position = 'relative';
+                topNav.style.top = '';
             }
         });
+    </script>
+
+    <!-- Change active navigation bar button -->
+    <script>
+        var activeTopNavButton = "start";
+        function setContentShown(topNavButton) {
+            var topNavButtons = document.getElementsByClassName("topnavbutton");
+            <!-- Inactivate all page contents -->
+            for (i = 0; i < topNavButtons.length; i++) {
+                topNavButtons[i].className = topNavButtons[i].className.replace(" active", "")
+            }
+            var activeTopNavButton = document.getElementById(topNavButton);
+            activeTopNavButton.className += " active";
+        }
+        setContentShown(activeTopNavButton);
     </script>
 </html>
