@@ -15,7 +15,6 @@
             .slideshowcontainer {
                 max-width: 100%;
                 position: relative;
-
             }
 
             .slideshowslide {
@@ -95,10 +94,13 @@
             }
 
             .dots {
-                position: absolute;
+                position:absolute;
                 bottom: 0;
+                left:0;
+                margin-left:50%;
                 display:inline-block;
                 padding:10px;
+                z-index:1;
             }
 
             .dot:not(.visible):hover {
@@ -175,7 +177,7 @@
                 <!-- Top slideshow -->
                 <div id = "slideshowcontainer" class = "slideshowcontainer">
                     <div class = "slideshowslide fade">
-                        <img src = "slideimg1.jpg" style="width:100%">
+                        <img src = "Slideimg1.jpg" style="width:100%">
                         <div class = "dots">
                             <span class = "dot"></span>
                             <span class = "dot" onclick = "showSlide(2)"></span>
@@ -184,7 +186,7 @@
                     </div>
 
                     <div class = "slideshowslide fade">
-                        <img src = "slideimg2.jpg" style="width:100%">
+                        <img src = "Slideimg2.jpg" style="width:100%">
                         <div class = "dots">
                             <span class = "dot" onclick = "showSlide(1)"></span>
                             <span class = "dot"></span>
@@ -193,7 +195,7 @@
                     </div>
 
                     <div class = "slideshowslide fade">
-                        <img src = "slideimg3.jpg" style="width:100%">
+                        <img src = "Slideimg3.jpg" style="width:100%">
                         <div class = "dots">
                             <span class = "dot" onclick = "showSlide(1)"></span>
                             <span class = "dot" onclick = "showSlide(2)"></span>
