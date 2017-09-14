@@ -89,4 +89,11 @@ function setActiveNavBarButton(navBarButton) {
     <!-- Activate new button -->
     navBarButton.className += " active";
 }
-setActiveNavBarButton(document.getElementById("start"));
+setActiveNavBarButton(document.getElementById("start"))
+
+/* Load tab content */
+function loadTab(tab_file_name) {
+    $("#tabcontent").load(tab_file_name);
+}
+loadTab("start.html")
+

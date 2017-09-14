@@ -8,6 +8,10 @@
 
 .topcontainer {
     top:0;
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer */
+    -webkit-user-select: none; /* Chrome, Safari, and Opera */
+    -webkit-touch-callout: none; /* Disable Android and iOS callouts*/
 }
 
 .slideshowcontainer {
@@ -146,17 +150,18 @@ button[name="pauseButton"] {
 }
 
 .topnavbutton {
+    cursor:pointer;
     margin-left:-4px;
+    font-family:"Palantinos", Verdana, sans-serif;
+    color: white;
 }
 
 .topnavbutton:not(.active):hover {
     background-color: rgba(28, 30, 30, 0.8);
-    color: white;
 }
 
 .topnavbutton.active {
     background-color: rgba(221,00,00,0.8);
-    color: white;
 }
 
 /* Page Content */

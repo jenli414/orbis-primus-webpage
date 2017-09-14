@@ -47,46 +47,32 @@
                 <div id = "topnav" class = "topnav">
                     <a id = "start"
                         class = "topnavbutton"
-                        href = "start.html"
-                        target = "contentframe"
-                        onclick = "setActiveNavBarButton(this)">
-                        Start
+                        onclick = "setActiveNavBarButton(this);
+                                   loadTab('start.html');">
+                        <p>Start</p>
                     </a>
                     <a id = "om-oss"
                         class = "topnavbutton"
-                        href = "om-oss.html"
-                        target = "contentframe"
-                        onclick = "setActiveNavBarButton(this)">
-                        Om oss
+                        onclick = "setActiveNavBarButton(this);
+                                   loadTab('om-oss.html');">
+                        <p>Om oss</p>
                     </a>
                     <a id = "boka-oss"
                         class = "topnavbutton"
-                        href = "boka-oss.html"
-                        target = "contentframe"
-                        onclick = "setActiveNavBarButton(this)">
-                        Boka oss
+                        onclick = "setActiveNavBarButton(this);
+                                   loadTab('boka-oss.html');">
+                        <p>Boka oss</p>
                     </a>
                     <a id = "kontakta-oss"
                         class = "topnavbutton"
-                        href = "kontakta-oss.html"
-                        target = "contentframe"
-                        onclick = "setActiveNavBarButton(this)">
-                        Kontakta oss
+                        onclick = "setActiveNavBarButton(this);
+                                   loadTab('kontakta-oss.html');">
+                        <p>Kontakta oss</p>
                     </a>
                 </div>
             </div>
-            <!-- Page Content -->
-            <div>
-                <iframe class = "pagecontent"
-                    src = "start.html"
-                    name = "contentframe"
-                    allowTransparency = "true"
-                    scrolling = "no"
-                    frameborder = "0"
-                    width = 100%
-                    onload = "this.style.height = 0 + 'px';this.style.height = this.contentDocument.body.scrollHeight + 'px';">
-                </iframe>
-            </div>
+            <!-- Tab Content -->
+            <div id = "tabcontent"></div>
         </div>
     </body>
     <script src="orbis-primus-webpage-scripts.js"></script>
