@@ -1,179 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <style>
-            * {
-                padding: 0;
-                margin: 0;
-                text-align:center;
-            }
-
-            .topcontainer {
-                top:0;
-            }
-
-            .slideshowcontainer {
-                max-width: 100%;
-                position: relative;
-            }
-
-            .slideshowslide {
-                display: none;
-                position:relative;
-                z-index:0;
-            }
-
-            .prev, .next {
-                cursor: pointer;
-                position: absolute;
-                top: 50%;
-                width: auto;
-                margin-top: -22px;
-                padding: 20px;
-                color: white;
-                font-weight: bold;
-                font-size: 18px;
-                transition: 0.6s ease;
-                border-radius: 0 3px 3px 0;
-            }
-
-            .prev {
-                left: 0;
-                border-radius: 0 200px 200px 0;
-            }
-
-            .next {
-                right: 0;
-                border-radius: 200px 0 0 200px;
-            }
-
-            .prev:hover, .next:hover {
-                background-color: rgba(71,71,71,0.5);
-            }
-
-            /* Play/Pause buttons in slideshow */
-            .slideshowButton {
-                cursor:pointer;
-                margin-right:10px;
-                margin-top:10px;
-                border:0;
-                background:rgba(0,0,0,0);
-                background-position:center;
-                background-repeat:no-repeat;
-                position:absolute;
-                right:0;
-                top:0;
-            }
-
-            button[name="playButton"] {
-                display:none;
-                width:46px;
-                height:46px;
-                background-image:url(playButton.png);
-                background-size:46px;
-            }
-
-            button[name="pauseButton"] {
-                width:45px;
-                height:45px;
-                background-image:url(pauseButton.png);
-                background-size:45px;
-            }
-
-            /* Dots in slideshow */
-            .dot {
-                cursor:pointer;
-                height: 13px;
-                width: 13px;
-                margin: 0 2px;
-                background-color: #717171;
-                border-radius: 50%;
-                position:relative;
-                display: inline-block;
-                transition: background-color 0.6s ease;
-            }
-
-            .dots {
-                position:absolute;
-                bottom: 0;
-                left:0;
-                margin-left:50%;
-                display:inline-block;
-                padding:10px;
-                z-index:1;
-            }
-
-            .dot:not(.visible):hover {
-                background-color: rgba(45,47,47,0.7);
-            }
-
-            .visible {
-                background-color: rgba(221,00,00,0.7);
-            }
-
-            /* Fading animation */
-            .fade {
-                -webkit-animation-name: fade;
-                -webkit-animation-duration: 1.5s;
-                animation-name: fade;
-                animation-duration: 1.5s;
-            }
-
-            @-webkit-keyframes fade {
-                from {opacity: .4}
-                to {opacity: 1}
-            }
-
-            @keyframes fade {
-                from {opacity: .4}
-                to {opacity: 1}
-            }
-
-            /* Navigation bar */
-            .topnav {
-                overflow: hidden;
-                background-color: #333;
-                width: 100%;
-                transform: translate(-50%, -50%);
-                margin-top:20px;
-                margin-left:50%;
-                position:relative;
-                z-index:1;
-            }
-
-            .topnav a {
-                display: inline-block;
-                color: #f2f2f2;
-                padding: 14px 16px;
-                text-decoration: none;
-                font-size: 17px;
-            }
-
-            .topnavbutton {
-                margin-left:-4px;
-            }
-
-            .topnavbutton:not(.active):hover {
-                background-color: rgba(28, 30, 30, 0.8);
-                color: white;
-            }
-
-            .topnavbutton.active {
-                background-color: rgba(221,00,00,0.8);
-                color: white;
-            }
-
-            /* Page Content */
-            .pagecontent {
-                position:relative;
-                margin-top:-20px;
-                z-index:0;
-            }
-        </style>
+        <meta charset="utf-8"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Noto+Serif" rel="stylesheet">
+        <link href="orbis-primus-stylesheet.css" rel="stylesheet">
     </head>
     <body bgcolor = "393635" text = "white">
         <div id = "outerdiv">
-            <div id = "topcontainer">
+            <div class = "topcontainer">
                 <!-- Top slideshow -->
                 <div id = "slideshowcontainer" class = "slideshowcontainer">
                     <div class = "slideshowslide fade">
@@ -214,28 +49,28 @@
                         class = "topnavbutton"
                         href = "start.html"
                         target = "contentframe"
-                        onclick = "contentShown = this.id;setContentShown(contentShown)">
+                        onclick = "setActiveNavBarButton(this)">
                         Start
                     </a>
-                    <a id = "omoss"
+                    <a id = "om-oss"
                         class = "topnavbutton"
                         href = "om-oss.html"
                         target = "contentframe"
-                        onclick = "contentShown = this.id;setContentShown(contentShown)">
+                        onclick = "setActiveNavBarButton(this)">
                         Om oss
                     </a>
-                    <a id = "bokaoss"
+                    <a id = "boka-oss"
                         class = "topnavbutton"
                         href = "boka-oss.html"
                         target = "contentframe"
-                        onclick = "contentShown = this.id;setContentShown(contentShown)">
+                        onclick = "setActiveNavBarButton(this)">
                         Boka oss
                     </a>
-                    <a id = "kontaktaoss"
+                    <a id = "kontakta-oss"
                         class = "topnavbutton"
                         href = "kontakta-oss.html"
                         target = "contentframe"
-                        onclick = "contentShown = this.id;setContentShown(contentShown)">
+                        onclick = "setActiveNavBarButton(this)">
                         Kontakta oss
                     </a>
                 </div>
@@ -254,103 +89,5 @@
             </div>
         </div>
     </body>
-    <!-- Show Slideshow -->
-    <script>
-        var slideIndex = 0;
-        var automaticSlideshow = true;
-        runSlides();
-        /* Automatic slideshow */
-        function runSlides() {
-            if (automaticSlideshow == true) {
-                setTimeout(runSlides, 2500); // Change image every 2 seconds
-                changeSlide(1);
-            };
-        }
-        /* Pause automatic slideshow */
-        function pauseSlides() {
-            automaticSlideshow = false;
-            var pauseButton = document.getElementById("pauseButton");
-            pauseButton.style.display = "none"
-            var playButton = document.getElementById("playButton");
-            playButton.style.display = "block"
-        }
-        /* Play automatic slideshow */
-        function playSlides() {
-            automaticSlideshow = true;
-            var playButton = document.getElementById("playButton");
-            playButton.style.display = "none"
-            var pauseButton = document.getElementById("pauseButton");
-            pauseButton.style.display = "block"
-            runSlides();
-        }
-        <!-- Change to a slide relative to current by n -->
-        function changeSlide(n) {
-            showSlides(slideIndex += n);
-        }
-        <!-- Set slideIndex to and show slide n -->
-        function showSlide(n) {
-            showSlides(slideIndex = n);
-        }
-        <!-- Show slide n. Will hide all slides and dots, -->
-        <!-- then display the right ones for slide n. -->
-        function showSlides(n) {
-            var i;
-            var slides = document.getElementsByClassName("slideshowslide");
-            var dots = document.getElementsByClassName("dot");
-            var slide_dots = [];
-            <!-- Get dots for slide n -->
-            for (i = 0; i < dots.length; i += slides.length + 1)
-                slide_dots.push(dots[i]);
-            <!-- If trying to go right from last slide, go to first slide -->
-            if (n > slides.length) {
-                slideIndex = 1
-            }
-            <!-- If trying to go left from first slide, go to last slide -->
-            if (n < 1) {
-                slideIndex = slides.length
-            }
-            <!-- Hide all slides -->
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            <!-- Hide all dots -->
-            for (i = 0; i < slide_dots.length; i++) {
-                slide_dots[i].className = slide_dots[i].className.replace(" visible", "");
-            };
-            <!-- Display current slide -->
-            slides[slideIndex - 1].style.display = "inline-block";
-            <!-- Display correct dot -->
-            slide_dots[slideIndex - 1].className += " visible";
-        }
-    </script>
-
-    <!-- Keep navigation bar from being scrolled out -->
-    <script type = 'text/javascript'>
-        window.addEventListener("scroll", function() {
-            var topNav = document.getElementById('topnav');
-            var slideshowHeight = document.getElementById('slideshowcontainer').offsetHeight;
-            if (window.pageYOffset >= slideshowHeight) {
-                topNav.style.position = 'fixed';
-                topNav.style.top = 0;
-            } else {
-                topNav.style.position = 'relative';
-                topNav.style.top = '';
-            }
-        });
-    </script>
-
-    <!-- Change active navigation bar button -->
-    <script>
-        var activeTopNavButton = "start";
-        function setContentShown(topNavButton) {
-            var topNavButtons = document.getElementsByClassName("topnavbutton");
-            <!-- Inactivate all page contents -->
-            for (i = 0; i < topNavButtons.length; i++) {
-                topNavButtons[i].className = topNavButtons[i].className.replace(" active", "")
-            }
-            var activeTopNavButton = document.getElementById(topNavButton);
-            activeTopNavButton.className += " active";
-        }
-        setContentShown(activeTopNavButton);
-    </script>
+    <script src="orbis-primus-webpage-scripts.js"></script>
 </html>
