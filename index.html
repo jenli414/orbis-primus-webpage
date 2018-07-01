@@ -2,66 +2,79 @@
 <html>
     <head>
         <meta charset="utf-8"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Noto+Serif" rel="stylesheet">
         <link href="orbis-primus-stylesheet.css" rel="stylesheet">
     </head>
     <body bgcolor = "393635" text = "white">
         <div id = "outerdiv">
-            <div class = "tabcontent">
-                <h1>Ny hemsida!</h1>
-                <h5><i>September 6, 2017</i></h5>
-                <p>
-                    Hej på er!
-                    <br/><br/>
-                    Nu har vi äntligen skaffat en finfin hemsida. Här hittar ni info om vad som händer i Orbis Primus, hur ni kan boka oss eller bara höra av er om ni har några funderingar.
-                    <br/><br/>
-                    Välkommen!
-                </p>
+            <div class = "topcontainer">
+                <!-- Top slideshow -->
+                <div id = "slideshowcontainer" class = "slideshowcontainer">
+                    <div class = "slideshowslide fade">
+                        <img src = "Slideimg1.jpg" style="width:100%">
+                        <div class = "dots">
+                            <span class = "dot"></span>
+                            <span class = "dot" onclick = "showSlide(2)"></span>
+                            <span class = "dot" onclick = "showSlide(3)"></span>
+                        </div>
+                    </div>
 
-                <hr/>
-                <h1>Ny hemsida!</h1>
-                <h5><i>September 6, 2017</i></h5>
-                <p>
-                    Hej på er!
-                    <br/><br/>
-                    Nu har vi äntligen skaffat en finfin hemsida. Här hittar ni info om vad som händer i Orbis Primus, hur ni kan boka oss eller bara höra av er om ni har några funderingar.
-                    <br/><br/>
-                    Välkommen!
-                </p>
+                    <div class = "slideshowslide fade">
+                        <img src = "Slideimg2.jpg" style="width:100%">
+                        <div class = "dots">
+                            <span class = "dot" onclick = "showSlide(1)"></span>
+                            <span class = "dot"></span>
+                            <span class = "dot" onclick = "showSlide(3)"></span>
+                        </div>
+                    </div>
 
-                <hr/>
-                <h1>Ny hemsida!</h1>
-                <h5><i>September 6, 2017</i></h5>
-                <p>
-                    Hej på er!
-                    <br/><br/>
-                    Nu har vi äntligen skaffat en finfin hemsida. Här hittar ni info om vad som händer i Orbis Primus, hur ni kan boka oss eller bara höra av er om ni har några funderingar.
-                    <br/><br/>
-                    Välkommen!
-                </p>
+                    <div class = "slideshowslide fade">
+                        <img src = "Slideimg3.jpg" style="width:100%">
+                        <div class = "dots">
+                            <span class = "dot" onclick = "showSlide(1)"></span>
+                            <span class = "dot" onclick = "showSlide(2)"></span>
+                            <span class = "dot"></span>
+                        </div>
+                    </div>
+                    <a class = "prev" onclick = "changeSlide(-1)">&#10094;</a>
+                    <a class = "next" onclick = "changeSlide(1)">&#10095;</a>
+                    <button class = "slideshowButton" name = "pauseButton" id = "pauseButton" onclick = "pauseSlides();"></button>
+                    <button class = "slideshowButton" name = "playButton" id = "playButton" onclick = "playSlides();"></button>
+                </div>
 
-                <hr/>
-                <h1>Ny hemsida!</h1>
-                <h5><i>September 6, 2017</i></h5>
-                <p>
-                    Hej på er!
-                    <br/><br/>
-                    Nu har vi äntligen skaffat en finfin hemsida. Här hittar ni info om vad som händer i Orbis Primus, hur ni kan boka oss eller bara höra av er om ni har några funderingar.
-                    <br/><br/>
-                    Välkommen!
-                </p>
-
-                <hr/>
-                <h1>Ny hemsida!</h1>
-                <h5><i>September 6, 2017</i></h5>
-                <p>
-                    Hej på er!
-                    <br/><br/>
-                    Nu har vi äntligen skaffat en finfin hemsida. Här hittar ni info om vad som händer i Orbis Primus, hur ni kan boka oss eller bara höra av er om ni har några funderingar.
-                    <br/><br/>
-                    Välkommen!
-                </p>
+              <!-- Menu bar html -->
+              <div id = "topnav" class = "topnav">
+                  <a id = "start"
+                      class = "topnavbutton"
+                      onclick = "setActiveNavBarButton(this);
+                                 loadTab('start.html');">
+                      <p>Start</p>
+                  </a>
+                  <a id = "om-oss"
+                      class = "topnavbutton"
+                      onclick = "setActiveNavBarButton(this);
+                                 loadTab('om-oss.html');">
+                      <p>Om oss</p>
+                  </a>
+                  <a id = "boka-oss"
+                      class = "topnavbutton"
+                      onclick = "setActiveNavBarButton(this);
+                                 loadTab('boka-oss.html');">
+                      <p>Boka oss</p>
+                  </a>
+                  <a id = "kontakta-oss"
+                      class = "topnavbutton"
+                      onclick = "setActiveNavBarButton(this);
+                                 loadTab('kontakta-oss.html');">
+                      <p>Kontakta oss</p>
+                  </a>
+              </div>
             </div>
+            <!-- Tab Content -->
+            <div id = "tabcontent"></div>
+            <br/><br/><br/>
         </div>
     </body>
+    <script src="orbis-primus-webpage-scripts.js"></script>
 </html>

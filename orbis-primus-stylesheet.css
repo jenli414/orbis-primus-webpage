@@ -4,6 +4,10 @@
     text-align:center;
 }
 
+body {
+    overflow-y: scroll;
+}
+
 /*-------------- main content (top/static content) -----------------*/
 
 .topcontainer {
@@ -113,7 +117,7 @@ button[name="pauseButton"] {
 }
 
 /* Fading animation */
-.fade {
+.slideshowcontainer.fade {
     -webkit-animation-name: fade;
     -webkit-animation-duration: 1.5s;
     animation-name: fade;
@@ -158,11 +162,11 @@ button[name="pauseButton"] {
 }
 
 .topnavbutton:not(.active):hover {
-    background-color: rgba(28, 30, 30, 0.8);
+    background-color: rgb(28, 30, 30);
 }
 
 .topnavbutton.active {
-    background-color: rgba(221,00,00,0.8);
+    background-color: rgb(221,00,00);
 }
 
 /* Page Content */
@@ -212,7 +216,7 @@ hr {
     border:0;
     width:60px;
     height:60px;
-    background:url(facebookButton.svg) center no-repeat;
+    background:url(facebookButton.png) center no-repeat;
     background-size:60px;
     position:relative;
     display:inline-block;
